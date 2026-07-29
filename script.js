@@ -1,5 +1,5 @@
 // ============================================ //
-// HALDEN — SHARED JAVASCRIPT (DEFENSIVE)      //
+// HALDEN — SHARED JAVASCRIPT                   //
 // ============================================ //
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // HAMBURGER MENU — FIXED                     //
+    // HAMBURGER MENU — RESTORED                  //
     // ========================================== //
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("navLinks");
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // PROJECT COUNTERS — FIXED                   //
+    // PROJECT COUNTERS — RESTORED                //
     // ========================================== //
     function animateCounters() {
         const statNumbers = document.querySelectorAll(".stat-number");
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     animateCounters();
 
     // ========================================== //
-    // PROJECT MAP — FIXED                       //
+    // PROJECT MAP — RESTORED                     //
     // ========================================== //
     const mapContainer = document.getElementById("mapContainer");
     const mapPoints = document.querySelectorAll(".map-dot");
@@ -195,11 +195,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = projectData[id];
             if (!data) return;
 
-            // Show loading
             if (panelLoading) panelLoading.style.display = "flex";
             if (panelData) panelData.style.display = "none";
 
-            // Update panel content
             setTimeout(function () {
                 const panelNumber = document.getElementById("panelNumber");
                 const panelLocation = document.getElementById("panelLocation");
@@ -228,13 +226,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     panelLink.href = data.link || "#";
                 }
 
-                // Show panel
                 if (panelLoading) panelLoading.style.display = "none";
                 if (panelData) panelData.style.display = "block";
                 projectPanel.classList.add("active");
                 if (mapDimOverlay) mapDimOverlay.classList.add("active");
 
-                // Highlight active dot
                 mapPoints.forEach(function (d) {
                     d.classList.remove("active");
                 });
@@ -254,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // PROJECT FILTERS — FIXED                    //
+    // PROJECT FILTERS                            //
     // ========================================== //
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
@@ -264,13 +260,11 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.addEventListener("click", function () {
                 const filter = this.getAttribute("data-filter");
 
-                // Update active button
                 filterBtns.forEach(function (b) {
                     b.classList.remove("active");
                 });
                 this.classList.add("active");
 
-                // Filter cards
                 projectCards.forEach(function (card) {
                     const category = card.getAttribute("data-category");
                     if (filter === "all" || category === filter) {
@@ -316,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // CONTACT FORM — FIXED                       //
+    // CONTACT FORM                               //
     // ========================================== //
     const contactForm = document.getElementById("contactForm");
 
@@ -401,17 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // VIDEO BACKGROUND — FALLBACK                //
-    // ========================================== //
-    const videos = document.querySelectorAll("video");
-    videos.forEach(function (video) {
-        video.addEventListener("error", function () {
-            // Silent fallback — video just won't play
-        });
-    });
-
-    // ========================================== //
-    // PROJECT MODAL — FIXED                      //
+    // PROJECT MODAL                              //
     // ========================================== //
     const projectModal = document.getElementById("projectModal");
     const modalOverlay = document.getElementById("modalOverlay");
@@ -419,7 +403,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalCloseBtn = document.getElementById("modalCloseBtn");
     const modalVideo = document.getElementById("modalVideo");
 
-    // Project modal data
     const modalData = {
         "commercial-office": {
             number: "01",
@@ -496,7 +479,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     if (projectModal && modalClose) {
-        // Close modal
         function closeModal() {
             projectModal.classList.remove("active");
             if (modalVideo) {
@@ -513,27 +495,17 @@ document.addEventListener("DOMContentLoaded", function () {
             modalCloseBtn.addEventListener("click", closeModal);
         }
 
-        // Open modal from project cards
         const projectLinks = document.querySelectorAll(".project-card-overlay-link, .project-card-link, .project-link");
 
         projectLinks.forEach(function (link) {
             link.addEventListener("click", function (e) {
                 e.preventDefault();
                 const href = this.getAttribute("href");
-                // Extract project ID from href
                 let projectId = href.replace(".html", "").replace("project-", "");
-                // Handle special cases
-                if (projectId === "commercial-office") projectId = "commercial-office";
-                else if (projectId === "residential-estate") projectId = "residential-estate";
-                else if (projectId === "retail-centre") projectId = "retail-centre";
-                else if (projectId === "industrial-warehouse") projectId = "industrial-warehouse";
-                else if (projectId === "boutique-hotel") projectId = "boutique-hotel";
-                else if (projectId === "compliance-recovery") projectId = "compliance-recovery";
 
                 if (modalData[projectId]) {
                     openModal(projectId);
                 } else {
-                    // Fallback: try to find by matching title
                     const card = this.closest(".project-card");
                     if (card) {
                         const titleEl = card.querySelector(".project-card-info h3");
@@ -555,7 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = modalData[id];
             if (!data) return;
 
-            // Update modal content
             const modalNumber = document.getElementById("modalNumber");
             const modalTag = document.getElementById("modalTag");
             const modalTitle = document.getElementById("modalTitle");
@@ -585,7 +556,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             if (modalLink) modalLink.href = data.link;
 
-            // Update video
             if (modalVideo) {
                 const source = modalVideo.querySelector("source");
                 if (source) {
@@ -595,13 +565,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            // Show modal
             projectModal.classList.add("active");
         }
     }
 
-    // ========================================== //
-    // LOG CONSOLE — DEBUG                       //
-    // ========================================== //
-    console.log("Halden — Script loaded successfully (defensive mode)");
+    console.log("Halden — Script loaded successfully");
 });
