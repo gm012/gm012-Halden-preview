@@ -3,35 +3,85 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
-    <!-- SEO -->
-    <title>Halden | Building Documentation & Compliance Specialists</title>
-    <meta name="description" content="Halden provides architectural documentation, building compliance and municipal approval support for property developers." />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Halden | Building Compliance Made Simple" />
+
+    <!-- ========================================== -->
+    <!-- PRIMARY SEO METADATA                       -->
+    <!-- ========================================== -->
+    <title>Halden | Building Documentation &amp; Compliance Specialists</title>
+    <meta name="description" content="Halden provides architectural documentation, building compliance, council approval support and documentation recovery for property developers in South Africa." />
+    <meta name="keywords" content="building documentation, building compliance, council approval, architectural documentation, documentation recovery, property development, tenant fit-out, building plans, municipal approval, South Africa" />
+    <link rel="canonical" href="https://gm012.github.io/gm012-Halden-preview/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- ========================================== -->
+    <!-- OPEN GRAPH / SOCIAL SHARING               -->
+    <!-- ========================================== -->
+    <meta property="og:title" content="Halden | Building Documentation &amp; Compliance Specialists" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.halden.co.za" />
-    <meta property="og:description" content="Architectural documentation, building compliance and municipal approval support for property developers." />
-    
-    <!-- Fonts -->
+    <meta property="og:url" content="https://gm012.github.io/gm012-Halden-preview/" />
+    <meta property="og:image" content="https://gm012.github.io/gm012-Halden-preview/images/og-image.jpg" />
+    <meta property="og:description" content="Architectural documentation, building compliance and municipal approval support for property developers in South Africa." />
+    <meta property="og:site_name" content="Halden" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Halden | Building Documentation &amp; Compliance Specialists" />
+    <meta name="twitter:description" content="Architectural documentation, building compliance and municipal approval support for property developers." />
+
+    <!-- ========================================== -->
+    <!-- FONTS & CSS                               -->
+    <!-- ========================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- ========================================== -->
+    <!-- FAVICON                                   -->
+    <!-- ========================================== -->
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+    <!-- ========================================== -->
+    <!-- STRUCTURED DATA (JSON-LD)                  -->
+    <!-- ========================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Halden",
+        "description": "Building Documentation & Compliance Specialists providing architectural documentation, council approval support and documentation recovery for property developers.",
+        "url": "https://gm012.github.io/gm012-Halden-preview/",
+        "telephone": "+27-11-555-0146",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Johannesburg",
+            "addressCountry": "South Africa"
+        },
+        "serviceArea": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "South Africa"
+            }
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/halden",
+            "https://twitter.com/halden"
+        ]
+    }
+    </script>
 </head>
 <body>
 
     <!-- ========== NAVIGATION ========== -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html">
-                    <img src="images/BUILT IN LOGOO3.png" alt="Halden" class="logo-image" />
+                <a href="index.html" aria-label="Halden Home">
+                    <img src="images/BUILT IN LOGOO3.png" alt="Halden logo - Building Documentation and Compliance Specialists" class="logo-image" width="180" height="60" />
                 </a>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -47,9 +97,9 @@
     </nav>
 
     <!-- ========== HERO SECTION ========== -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="hero-video-bg">
-            <video autoplay muted loop playsinline id="bgVideo">
+            <video autoplay muted loop playsinline id="bgVideo" aria-hidden="true">
                 <source src="images/backgroundx01.mp4" type="video/mp4" />
             </video>
             <div class="hero-overlay"></div>
@@ -57,8 +107,8 @@
         
         <div class="container hero-container">
             <div class="hero-content">
-                <span class="hero-tag">Building Documentation & Compliance Specialists</span>
-                <h1 class="reveal-text">Building Compliance,<br />Made Simple.</h1>
+                <span class="hero-tag">Building Documentation &amp; Compliance Specialists</span>
+                <h1 id="hero-title" class="reveal-text">Building Compliance,<br />Made Simple.</h1>
                 <p class="reveal-text-delay">
                     We're architectural practitioners who specialise in compliance processing 
                     of commercial building development projects transforming complex existing conditions into reliable, submission-ready information.
@@ -70,41 +120,41 @@
             </div>
             <div class="hero-image reveal-text-delay">
                 <div class="hero-placeholder">
-                    <img src="images/placeholder.png" alt="Building Documentation" />
+                    <img src="images/placeholder.png" alt="Architectural documentation and building compliance services for property developers" width="500" height="400" loading="lazy" />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ========== PROBLEM / SOLUTION ========== -->
-    <section class="problem-solution">
+    <section class="problem-solution" aria-labelledby="ps-title">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">The Challenge</span>
-                <h2>Navigating Compliance Complexity</h2>
+                <h2 id="ps-title">Navigating Compliance Complexity</h2>
                 <p>Development projects face critical hurdles that can delay progress and impact investment value.</p>
             </div>
             <div class="ps-grid">
                 <div class="ps-block problem-block">
-                    <div class="ps-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="ps-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div>
                     <h3>Common Obstacles</h3>
                     <ul>
-                        <li><i class="fas fa-times"></i> Changed building use needing certification</li>
-                        <li><i class="fas fa-times"></i> Undocumented additions or alterations</li>
-                        <li><i class="fas fa-times"></i> Understanding tenant space ratings</li>
-                        <li><i class="fas fa-times"></i> Insurance coverage for developers</li>
-                        <li><i class="fas fa-times"></i> Building capacity expansion challenges</li>
+                        <li><i class="fas fa-times" aria-hidden="true"></i> Changed building use needing certification</li>
+                        <li><i class="fas fa-times" aria-hidden="true"></i> Undocumented additions or alterations</li>
+                        <li><i class="fas fa-times" aria-hidden="true"></i> Understanding tenant space ratings</li>
+                        <li><i class="fas fa-times" aria-hidden="true"></i> Insurance coverage for developers</li>
+                        <li><i class="fas fa-times" aria-hidden="true"></i> Building capacity expansion challenges</li>
                     </ul>
                 </div>
                 <div class="ps-block solution-block">
-                    <div class="ps-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="ps-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
                     <h3>Our Approach</h3>
                     <ul>
-                        <li><i class="fas fa-check"></i> Full municipal approval support</li>
-                        <li><i class="fas fa-check"></i> Comprehensive documentation recovery</li>
-                        <li><i class="fas fa-check"></i> Expert tenant space analysis</li>
-                        <li><i class="fas fa-check"></i> Accurate building measurement and verification</li>
-                        <li><i class="fas fa-check"></i> Digital as-built records for future asset management</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Full municipal approval support</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Comprehensive documentation recovery</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Expert tenant space analysis</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Accurate building measurement and verification</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Digital as-built records for future asset management</li>
                     </ul>
                     <p class="solution-tagline">
                         Our services enable developers to have compliant buildings as investment.
@@ -115,9 +165,9 @@
     </section>
 
     <!-- ========== SERVICES SECTION ========== -->
-    <section id="services" class="services">
+    <section id="services" class="services" aria-labelledby="services-title">
         <div class="services-video-bg">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline aria-hidden="true">
                 <source src="images/backgroundx01.mp4" type="video/mp4" />
             </video>
             <div class="services-overlay"></div>
@@ -126,7 +176,7 @@
         <div class="container services-container">
             <div class="section-header services-header">
                 <span class="section-tag">What We Do</span>
-                <h2>Our Services</h2>
+                <h2 id="services-title">Our Services</h2>
                 <p>
                     We're more than a drafting service. As a Building Documentation &amp; Council 
                     Support Consultancy, we provide complete architectural documentation solutions.
@@ -141,8 +191,8 @@
                         <h3>Update Missing Documentation</h3>
                         <p>Recover lost building plans through accurate site surveys and documentation recovery.</p>
                     </div>
-                    <a href="service-documentation-recovery.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-documentation-recovery.html" class="service-arrow" aria-label="Learn more about Documentation Recovery">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -153,8 +203,8 @@
                         <h3>Document Existing Alterations</h3>
                         <p>Record renovations, extensions and tenant fit-outs with accurate drawings.</p>
                     </div>
-                    <a href="service-existing-conditions.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-existing-conditions.html" class="service-arrow" aria-label="Learn more about Existing Conditions">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -165,8 +215,8 @@
                         <h3>Council Ready Documentation</h3>
                         <p>Prepare professional submissions for municipal approval processes.</p>
                     </div>
-                    <a href="service-council-approval.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-council-approval.html" class="service-arrow" aria-label="Learn more about Council Approval">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -177,8 +227,8 @@
                         <h3>Save Time &amp; Reduce Costs</h3>
                         <p>Start projects sooner with reliable building data that eliminates duplicated work.</p>
                     </div>
-                    <a href="service-tenant-fitout.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-tenant-fitout.html" class="service-arrow" aria-label="Learn more about Tenant Fit-Out">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -189,8 +239,8 @@
                         <h3>Improve Property Management</h3>
                         <p>Support maintenance, contractor coordination and operational planning.</p>
                     </div>
-                    <a href="service-property-management.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-property-management.html" class="service-arrow" aria-label="Learn more about Property Management">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -201,8 +251,8 @@
                         <h3>Support Transactions &amp; Investment</h3>
                         <p>Provide confidence to buyers, investors, valuers and financial institutions.</p>
                     </div>
-                    <a href="service-investment-support.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-investment-support.html" class="service-arrow" aria-label="Learn more about Investment Support">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -213,8 +263,8 @@
                         <h3>Reduce Documentation Risks</h3>
                         <p>Minimize project risk with accurate and up-to-date building information.</p>
                     </div>
-                    <a href="service-risk-reduction.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-risk-reduction.html" class="service-arrow" aria-label="Learn more about Risk Reduction">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -225,8 +275,8 @@
                         <h3>Long-Term Digital Building Record</h3>
                         <p>Create a living record that grows with your property and protects asset value.</p>
                     </div>
-                    <a href="service-digital-records.html" class="service-arrow">
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="service-digital-records.html" class="service-arrow" aria-label="Learn more about Digital Records">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -234,86 +284,86 @@
     </section>
 
     <!-- ========== WHY US SECTION ========== -->
-    <section id="why-us" class="why-us">
+    <section id="why-us" class="why-us" aria-labelledby="why-title">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Why Choose Us</span>
-                <h2>It's About The Confidence</h2>
+                <h2 id="why-title">It's About The Confidence</h2>
                 <p>
                     Accurate information creates confidence. Our approach combines measured surveys, architectural documentation and compliance expertise to provide reliable building records for every project.
                 </p>
             </div>
             <div class="why-grid">
                 <!-- Item 01 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">01</div>
                         <h3>Documentation Recovery</h3>
                         <p>Regain control of your property's documentation for future renovations, leasing, and transactions.</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 02 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">02</div>
                         <h3>Accurate Building Records</h3>
                         <p>Receive an accurate record of your building's current condition, reducing uncertainty.</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 03 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">03</div>
                         <h3>Council Ready Submissions</h3>
                         <p>Reduce delays caused by missing or outdated documentation with reliable information.</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 04 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">04</div>
                         <h3>Save Time &amp; Money</h3>
                         <p>Accurate documentation enables projects to start sooner, reducing duplicated work.</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 05 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">05</div>
                         <h3>Better Property Management</h3>
                         <p>Make informed decisions using accurate documentation throughout the life of your property.</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 06 -->
-                <div class="why-item">
+                <article class="why-item">
                     <div class="why-inner">
                         <div class="why-number">06</div>
                         <h3>Investment Confidence</h3>
                         <p>Verified documentation provides confidence to buyers, investors, and financial institutions.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- ========== PROCESS SECTION ========== -->
-    <section id="process" class="process">
+    <section id="process" class="process" aria-labelledby="process-title">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">How We Work</span>
-                <h2>Our Process</h2>
+                <h2 id="process-title">Our Process</h2>
                 <p>A staged approach that allows clients to address their building information needs.</p>
             </div>
             <div class="process-timeline">
                 <div class="timeline-item">
                     <div class="timeline-number">01</div>
                     <div class="timeline-content">
-                        <div class="timeline-icon"><i class="fas fa-search"></i></div>
+                        <div class="timeline-icon"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <h3>Discover</h3>
                         <p>Review existing information and identify documentation requirements.</p>
                     </div>
@@ -321,7 +371,7 @@
                 <div class="timeline-item">
                     <div class="timeline-number">02</div>
                     <div class="timeline-content">
-                        <div class="timeline-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <div class="timeline-icon"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
                         <h3>Document</h3>
                         <p>Prepare accurate architectural documentation and submission requirements.</p>
                     </div>
@@ -329,7 +379,7 @@
                 <div class="timeline-item">
                     <div class="timeline-number">03</div>
                     <div class="timeline-content">
-                        <div class="timeline-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="timeline-icon"><i class="fas fa-certificate" aria-hidden="true"></i></div>
                         <h3>Deliver</h3>
                         <p>Provide a complete documentation package ready for submission.</p>
                     </div>
@@ -339,32 +389,32 @@
     </section>
 
     <!-- ========== CONTACT SECTION ========== -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-labelledby="contact-title">
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <span class="section-tag">Get In Touch</span>
-                    <h2>Let's Work Together</h2>
+                    <h2 id="contact-title">Let's Work Together</h2>
                     <p>
                         Need accurate information about your property? Reach out to us and let's 
                         start the conversation.
                     </p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>011-555-0146</span>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+27115550146">011-555-0146</a>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@halden.co.za</span>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:info@halden.co.za">info@halden.co.za</a>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-globe" aria-hidden="true"></i>
                             <span>www.halden.co.za</span>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" aria-label="Contact form">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" placeholder="John Doe" required />
@@ -381,19 +431,19 @@
                         <label for="message">Your Message</label>
                         <textarea id="message" rows="4" placeholder="Tell us about your project..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">Send Message <i class="fas fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary btn-full">Send Message <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img src="images/BUILT IN LOGOO3.png" alt="Halden" class="footer-logo" />
-                    <p>Specialists in Building Compliance & Certainty</p>
+                    <img src="images/BUILT IN LOGOO3.png" alt="Halden logo - Building Documentation and Compliance Specialists" class="footer-logo" width="160" height="50" loading="lazy" />
+                    <p>Specialists in Building Compliance &amp; Certainty</p>
                 </div>
                 <div class="footer-links">
                     <a href="index.html">Home</a>
@@ -403,9 +453,9 @@
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Halden on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Halden on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Halden on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -416,9 +466,10 @@
 
     <!-- ========== BACK TO TOP ========== -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </button>
 
-    <script src="script.js"></script>
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js" defer></script>
 </body>
-</html>
+</html>G
