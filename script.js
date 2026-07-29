@@ -56,16 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // VIDEO BACKGROUND (Homepage)                //
-    // ========================================== //
-    const bgVideo = document.getElementById("bgVideo");
-
-    if (bgVideo) {
-        // Video is handled by HTML autoplay/playsinline
-        // No additional JS needed for functionality
-    }
-
-    // ========================================== //
     // SERVICE METHODOLOGY BUTTONS                //
     // ========================================== //
     const methodologyBtns = document.querySelectorAll(".methodology-btn");
@@ -74,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (methodologyBtns.length > 0 && methodContents.length > 0) {
         methodologyBtns.forEach(function (btn) {
             btn.addEventListener("click", function () {
-                // Update active button state
                 methodologyBtns.forEach(function (b) {
                     b.classList.remove("active");
                     b.setAttribute("aria-selected", "false");
@@ -82,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.classList.add("active");
                 this.setAttribute("aria-selected", "true");
 
-                // Update active content
                 const targetId = this.getAttribute("data-method");
                 if (targetId) {
                     methodContents.forEach(function (content) {
@@ -98,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // CONTACT FORM (Homepage Contact Section)    //
+    // CONTACT FORM                               //
     // ========================================== //
     const contactForm = document.getElementById("contactForm");
 
@@ -107,11 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             const name = document.getElementById("name");
             const email = document.getElementById("email");
-            const phone = document.getElementById("phone");
             const message = document.getElementById("message");
 
             if (name && email && message) {
-                // Simple validation check
                 if (name.value.trim() && email.value.trim() && message.value.trim()) {
                     alert("Thank you for your message! We'll get back to you soon.");
                     contactForm.reset();
@@ -133,13 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
         luxuryServices.forEach(function (service) {
             service.addEventListener("mouseenter", function () {
                 const number = this.querySelector(".service-number");
-                if (number) {
-                    number.style.color = "#A8793F";
-                }
+                if (number) number.style.color = "#A8793F";
                 const content = this.querySelector(".service-content h3");
-                if (content) {
-                    content.style.color = "#A8793F";
-                }
+                if (content) content.style.color = "#A8793F";
                 const arrow = this.querySelector(".service-arrow");
                 if (arrow) {
                     arrow.style.color = "#A8793F";
@@ -149,13 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             service.addEventListener("mouseleave", function () {
                 const number = this.querySelector(".service-number");
-                if (number) {
-                    number.style.color = "";
-                }
+                if (number) number.style.color = "";
                 const content = this.querySelector(".service-content h3");
-                if (content) {
-                    content.style.color = "";
-                }
+                if (content) content.style.color = "";
                 const arrow = this.querySelector(".service-arrow");
                 if (arrow) {
                     arrow.style.color = "";
@@ -175,7 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
             card.addEventListener("click", function () {
                 const projectId = this.getAttribute("data-project");
                 if (projectId) {
-                    // Placeholder for project modal/lightbox
                     console.log("Project clicked:", projectId);
                 }
             });
@@ -203,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // ANIMATED COUNTER (Why Us Section)          //
+    // ANIMATED COUNTER                           //
     // ========================================== //
     const statNumbers = document.querySelectorAll(".stat-number");
 
@@ -259,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // BACK TO TOP — SCROLL INDICATOR             //
+    // SCROLL PROGRESS INDICATOR                  //
     // ========================================== //
     const scrollLine = document.querySelector(".hero-scroll-progress");
 
@@ -271,12 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollLine.style.height = scrollPercent + "%";
         });
     }
-
-    // ========================================== //
-    // SERVICE PAGE — METHODOLOGY ACTIVE STATE    //
-    // ========================================== //
-    // This is handled above in the methodology section
-    // Ensures first button stays active by default
 
     console.log("Halden — Script loaded successfully (defensive mode)");
 });
