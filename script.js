@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("scroll", function () {
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY && currentScrollY > 80) {
-                navbar.classList.add("hidden");
+                navbar.classList.add("nav-hidden");
             } else {
-                navbar.classList.remove("hidden");
+                navbar.classList.remove("nav-hidden");
             }
             lastScrollY = currentScrollY;
         });
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // HAMBURGER MENU                             //
+    // HAMBURGER MENU — FIXED                     //
     // ========================================== //
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("navLinks");
@@ -51,7 +51,237 @@ document.addEventListener("DOMContentLoaded", function () {
     if (hamburger && navLinks) {
         hamburger.addEventListener("click", function () {
             hamburger.classList.toggle("active");
-            navLinks.classList.toggle("active");
+            navLinks.classList.toggle("open");
+        });
+    }
+
+    // ========================================== //
+    // PROJECT COUNTERS — FIXED                   //
+    // ========================================== //
+    function animateCounters() {
+        const statNumbers = document.querySelectorAll(".stat-number");
+
+        if (statNumbers.length === 0) return;
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute("data-count"), 10) || parseInt(el.textContent, 10) || 0;
+                    let current = 0;
+                    const duration = 2000;
+                    const steps = 60;
+                    const increment = Math.ceil(target / steps);
+
+                    if (target === 0) return;
+
+                    const timer = setInterval(function () {
+                        current += increment;
+                        if (current >= target) {
+                            el.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            el.textContent = current;
+                        }
+                    }, duration / steps);
+
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        statNumbers.forEach(function (stat) {
+            observer.observe(stat);
+        });
+    }
+
+    animateCounters();
+
+    // ========================================== //
+    // PROJECT MAP — FIXED                       //
+    // ========================================== //
+    const mapContainer = document.getElementById("mapContainer");
+    const mapPoints = document.querySelectorAll(".map-dot");
+    const projectPanel = document.getElementById("projectPanel");
+    const panelClose = document.getElementById("panelClose");
+    const mapDimOverlay = document.getElementById("mapDimOverlay");
+    const panelLoading = document.getElementById("panelLoading");
+    const panelData = document.getElementById("panelData");
+
+    // Project data
+    const projectData = {
+        johannesburg: {
+            number: "01",
+            location: "Johannesburg, Gauteng",
+            title: "Commercial Office Development",
+            year: "2025",
+            client: "Private Developer",
+            services: ["Documentation", "Compliance", "Council Approval"],
+            link: "project-commercial-office.html"
+        },
+        pretoria: {
+            number: "02",
+            location: "Pretoria, Gauteng",
+            title: "Industrial Warehousing Facility",
+            year: "2025",
+            client: "Logistics Group",
+            services: ["Documentation", "Council Approval", "Consultancy"],
+            link: "project-industrial-warehouse.html"
+        },
+        durban: {
+            number: "03",
+            location: "Durban, KwaZulu-Natal",
+            title: "Retail Shopping Centre",
+            year: "2024",
+            client: "Retail Property Fund",
+            services: ["Documentation", "Compliance", "Fit-Out"],
+            link: "project-retail-centre.html"
+        },
+        capetown: {
+            number: "04",
+            location: "Cape Town, Western Cape",
+            title: "Luxury Residential Estate",
+            year: "2024",
+            client: "Estate Developers",
+            services: ["Documentation", "Compliance", "Consultancy"],
+            link: "project-residential-estate.html"
+        },
+        gqeberha: {
+            number: "05",
+            location: "Gqeberha, Eastern Cape",
+            title: "Mixed-Use Development",
+            year: "2023",
+            client: "Urban Development Group",
+            services: ["Documentation", "Compliance", "Planning"],
+            link: "project-mixed-use.html"
+        },
+        bloemfontein: {
+            number: "06",
+            location: "Bloemfontein, Free State",
+            title: "Documentation Recovery & Compliance",
+            year: "2023",
+            client: "Property Management Co",
+            services: ["Documentation Recovery", "Compliance", "Consultancy"],
+            link: "project-compliance-recovery.html"
+        }
+    };
+
+    if (mapPoints.length > 0 && projectPanel) {
+        // Click on map dots
+        mapPoints.forEach(function (dot) {
+            dot.addEventListener("click", function () {
+                const projectId = this.getAttribute("data-project");
+                if (projectId && projectData[projectId]) {
+                    showProject(projectId);
+                }
+            });
+        });
+
+        // Close panel
+        if (panelClose) {
+            panelClose.addEventListener("click", function () {
+                hideProjectPanel();
+            });
+        }
+
+        // Click outside to close
+        if (mapDimOverlay) {
+            mapDimOverlay.addEventListener("click", function () {
+                hideProjectPanel();
+            });
+        }
+
+        function showProject(id) {
+            const data = projectData[id];
+            if (!data) return;
+
+            // Show loading
+            if (panelLoading) panelLoading.style.display = "flex";
+            if (panelData) panelData.style.display = "none";
+
+            // Update panel content
+            setTimeout(function () {
+                const panelNumber = document.getElementById("panelNumber");
+                const panelLocation = document.getElementById("panelLocation");
+                const panelTitle = document.getElementById("panelTitle");
+                const panelYear = document.getElementById("panelYear");
+                const panelClient = document.getElementById("panelClient");
+                const panelServices = document.getElementById("panelServices");
+                const panelLink = document.getElementById("panelLink");
+
+                if (panelNumber) panelNumber.textContent = data.number;
+                if (panelLocation) panelLocation.textContent = data.location;
+                if (panelTitle) panelTitle.textContent = data.title;
+                if (panelYear) panelYear.textContent = data.year;
+                if (panelClient) panelClient.textContent = data.client;
+
+                if (panelServices) {
+                    panelServices.innerHTML = "";
+                    data.services.forEach(function (service) {
+                        const span = document.createElement("span");
+                        span.textContent = service;
+                        panelServices.appendChild(span);
+                    });
+                }
+
+                if (panelLink) {
+                    panelLink.href = data.link || "#";
+                }
+
+                // Show panel
+                if (panelLoading) panelLoading.style.display = "none";
+                if (panelData) panelData.style.display = "block";
+                projectPanel.classList.add("active");
+                if (mapDimOverlay) mapDimOverlay.classList.add("active");
+
+                // Highlight active dot
+                mapPoints.forEach(function (d) {
+                    d.classList.remove("active");
+                });
+                const activeDot = document.querySelector('.map-dot[data-project="' + id + '"]');
+                if (activeDot) activeDot.classList.add("active");
+
+            }, 300);
+        }
+
+        function hideProjectPanel() {
+            projectPanel.classList.remove("active");
+            if (mapDimOverlay) mapDimOverlay.classList.remove("active");
+            mapPoints.forEach(function (d) {
+                d.classList.remove("active");
+            });
+        }
+    }
+
+    // ========================================== //
+    // PROJECT FILTERS — FIXED                    //
+    // ========================================== //
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    if (filterBtns.length > 0 && projectCards.length > 0) {
+        filterBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                const filter = this.getAttribute("data-filter");
+
+                // Update active button
+                filterBtns.forEach(function (b) {
+                    b.classList.remove("active");
+                });
+                this.classList.add("active");
+
+                // Filter cards
+                projectCards.forEach(function (card) {
+                    const category = card.getAttribute("data-category");
+                    if (filter === "all" || category === filter) {
+                        card.style.display = "block";
+                        card.classList.remove("hidden");
+                    } else {
+                        card.style.display = "none";
+                        card.classList.add("hidden");
+                    }
+                });
+            });
         });
     }
 
@@ -86,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ========================================== //
-    // CONTACT FORM                               //
+    // CONTACT FORM — FIXED                       //
     // ========================================== //
     const contactForm = document.getElementById("contactForm");
 
@@ -119,13 +349,17 @@ document.addEventListener("DOMContentLoaded", function () {
         luxuryServices.forEach(function (service) {
             service.addEventListener("mouseenter", function () {
                 const number = this.querySelector(".service-number");
-                if (number) number.style.color = "#A8793F";
+                if (number) number.style.color = "rgba(168, 121, 63, 0.18)";
                 const content = this.querySelector(".service-content h3");
-                if (content) content.style.color = "#A8793F";
+                if (content) content.style.color = "#C39A5B";
                 const arrow = this.querySelector(".service-arrow");
                 if (arrow) {
-                    arrow.style.color = "#A8793F";
-                    arrow.style.transform = "translateX(8px)";
+                    arrow.style.background = "linear-gradient(135deg, #C39A5B, #8F6535)";
+                    arrow.style.color = "#FFFFFF";
+                    arrow.style.transform = "rotate(45deg)";
+                    arrow.style.borderColor = "#C39A5B";
+                    const icon = arrow.querySelector("i");
+                    if (icon) icon.style.transform = "rotate(-45deg)";
                 }
             });
 
@@ -136,118 +370,238 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (content) content.style.color = "";
                 const arrow = this.querySelector(".service-arrow");
                 if (arrow) {
+                    arrow.style.background = "";
                     arrow.style.color = "";
                     arrow.style.transform = "";
+                    arrow.style.borderColor = "";
+                    const icon = arrow.querySelector("i");
+                    if (icon) icon.style.transform = "";
                 }
             });
         });
     }
 
     // ========================================== //
-    // PROJECT CARDS — CLICK INTERACTION          //
+    // SCROLL REVEAL — TIMELINE ITEMS             //
     // ========================================== //
-    const projectCards = document.querySelectorAll(".project-card");
+    const timelineItems = document.querySelectorAll(".timeline-item");
 
-    if (projectCards.length > 0) {
-        projectCards.forEach(function (card) {
-            card.addEventListener("click", function () {
-                const projectId = this.getAttribute("data-project");
-                if (projectId) {
-                    console.log("Project clicked:", projectId);
+    if (timelineItems.length > 0) {
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
                 }
             });
+        }, { threshold: 0.2 });
+
+        timelineItems.forEach(function (item) {
+            observer.observe(item);
         });
     }
 
     // ========================================== //
-    // SMOOTH SCROLL FOR INTERNAL LINKS           //
+    // VIDEO BACKGROUND — FALLBACK                //
     // ========================================== //
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    const videos = document.querySelectorAll("video");
+    videos.forEach(function (video) {
+        video.addEventListener("error", function () {
+            // Silent fallback — video just won't play
+        });
+    });
 
-    if (internalLinks.length > 0) {
-        internalLinks.forEach(function (link) {
+    // ========================================== //
+    // PROJECT MODAL — FIXED                      //
+    // ========================================== //
+    const projectModal = document.getElementById("projectModal");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const modalVideo = document.getElementById("modalVideo");
+
+    // Project modal data
+    const modalData = {
+        "commercial-office": {
+            number: "01",
+            tag: "Commercial",
+            title: "Commercial Office Development",
+            location: "Johannesburg, Gauteng",
+            locationSpec: "Johannesburg",
+            typeSpec: "Commercial",
+            description: "Complete building documentation and compliance processing for a commercial office development in Sandton.",
+            services: ["Documentation", "Compliance", "Council Approval"],
+            video: "images/Commercial Office Development.mp4",
+            link: "project-commercial-office.html"
+        },
+        "residential-estate": {
+            number: "02",
+            tag: "Residential",
+            title: "Luxury Residential Estate",
+            location: "Cape Town, Western Cape",
+            locationSpec: "Cape Town",
+            typeSpec: "Residential",
+            description: "Existing conditions surveys and compliance documentation for a luxury residential estate development.",
+            services: ["Documentation", "Compliance", "Consultancy"],
+            video: "images/Luxury Residential Estate.mp4",
+            link: "project-residential-estate.html"
+        },
+        "retail-centre": {
+            number: "03",
+            tag: "Retail",
+            title: "Retail Shopping Centre",
+            location: "Durban, KwaZulu-Natal",
+            locationSpec: "Durban",
+            typeSpec: "Retail",
+            description: "Documentation recovery and tenant fit-out support for a major retail shopping centre.",
+            services: ["Documentation", "Compliance", "Fit-Out"],
+            video: "images/Retail Shopping Centre.mp4",
+            link: "project-retail-centre.html"
+        },
+        "industrial-warehouse": {
+            number: "04",
+            tag: "Industrial",
+            title: "Industrial Warehousing Facility",
+            location: "Pretoria, Gauteng",
+            locationSpec: "Pretoria",
+            typeSpec: "Industrial",
+            description: "Council-ready documentation and compliance support for an industrial warehousing facility.",
+            services: ["Documentation", "Council Approval", "Consultancy"],
+            video: "images/Industrial Warehousing Facility.mp4",
+            link: "project-industrial-warehouse.html"
+        },
+        "boutique-hotel": {
+            number: "05",
+            tag: "Hospitality",
+            title: "Boutique Hotel & Spa",
+            location: "Stellenbosch, Western Cape",
+            locationSpec: "Stellenbosch",
+            typeSpec: "Hospitality",
+            description: "Full documentation and compliance processing for a boutique hotel and spa development.",
+            services: ["Documentation", "Compliance", "Consultancy"],
+            video: "images/Boutique Hotel & Spa.mp4",
+            link: "project-boutique-hotel.html"
+        },
+        "compliance-recovery": {
+            number: "06",
+            tag: "Documentation",
+            title: "Documentation Recovery & Compliance",
+            location: "Multiple Locations",
+            locationSpec: "Various",
+            typeSpec: "Compliance",
+            description: "Comprehensive documentation recovery and compliance processing across multiple locations.",
+            services: ["Documentation Recovery", "Compliance", "Consultancy"],
+            video: "images/Documentation Recovery & Compliance.mp4",
+            link: "project-compliance-recovery.html"
+        }
+    };
+
+    if (projectModal && modalClose) {
+        // Close modal
+        function closeModal() {
+            projectModal.classList.remove("active");
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        }
+
+        if (modalOverlay) {
+            modalOverlay.addEventListener("click", closeModal);
+        }
+        modalClose.addEventListener("click", closeModal);
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener("click", closeModal);
+        }
+
+        // Open modal from project cards
+        const projectLinks = document.querySelectorAll(".project-card-overlay-link, .project-card-link, .project-link");
+
+        projectLinks.forEach(function (link) {
             link.addEventListener("click", function (e) {
-                const targetId = this.getAttribute("href");
-                if (targetId && targetId !== "#") {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({ behavior: "smooth" });
+                e.preventDefault();
+                const href = this.getAttribute("href");
+                // Extract project ID from href
+                let projectId = href.replace(".html", "").replace("project-", "");
+                // Handle special cases
+                if (projectId === "commercial-office") projectId = "commercial-office";
+                else if (projectId === "residential-estate") projectId = "residential-estate";
+                else if (projectId === "retail-centre") projectId = "retail-centre";
+                else if (projectId === "industrial-warehouse") projectId = "industrial-warehouse";
+                else if (projectId === "boutique-hotel") projectId = "boutique-hotel";
+                else if (projectId === "compliance-recovery") projectId = "compliance-recovery";
+
+                if (modalData[projectId]) {
+                    openModal(projectId);
+                } else {
+                    // Fallback: try to find by matching title
+                    const card = this.closest(".project-card");
+                    if (card) {
+                        const titleEl = card.querySelector(".project-card-info h3");
+                        if (titleEl) {
+                            const title = titleEl.textContent;
+                            for (let key in modalData) {
+                                if (modalData[key].title === title) {
+                                    openModal(key);
+                                    return;
+                                }
+                            }
+                        }
                     }
                 }
             });
         });
-    }
 
-    // ========================================== //
-    // ANIMATED COUNTER                           //
-    // ========================================== //
-    const statNumbers = document.querySelectorAll(".stat-number");
+        function openModal(id) {
+            const data = modalData[id];
+            if (!data) return;
 
-    if (statNumbers.length > 0) {
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.textContent, 10) || 0;
-                    let current = 0;
-                    const increment = Math.ceil(target / 40);
-                    const timer = setInterval(function () {
-                        current += increment;
-                        if (current >= target) {
-                            el.textContent = target + (el.textContent.includes("+") ? "+" : "");
-                            clearInterval(timer);
-                        } else {
-                            el.textContent = current + (el.textContent.includes("+") ? "+" : "");
-                        }
-                    }, 30);
-                    observer.unobserve(el);
+            // Update modal content
+            const modalNumber = document.getElementById("modalNumber");
+            const modalTag = document.getElementById("modalTag");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalLocation = document.getElementById("modalLocation");
+            const modalLocationSpec = document.getElementById("modalLocationSpec");
+            const modalTypeSpec = document.getElementById("modalTypeSpec");
+            const modalDescription = document.getElementById("modalDescription");
+            const modalServices = document.getElementById("modalServices");
+            const modalLink = document.getElementById("modalLink");
+
+            if (modalNumber) modalNumber.textContent = data.number;
+            if (modalTag) modalTag.textContent = data.tag;
+            if (modalTitle) modalTitle.textContent = data.title;
+            if (modalLocation) modalLocation.textContent = data.location;
+            if (modalLocationSpec) modalLocationSpec.textContent = data.locationSpec;
+            if (modalTypeSpec) modalTypeSpec.textContent = data.typeSpec;
+            if (modalDescription) {
+                modalDescription.innerHTML = "<p>" + data.description + "</p>";
+            }
+            if (modalServices) {
+                modalServices.innerHTML = "";
+                data.services.forEach(function (service) {
+                    const span = document.createElement("span");
+                    span.textContent = service;
+                    modalServices.appendChild(span);
+                });
+            }
+            if (modalLink) modalLink.href = data.link;
+
+            // Update video
+            if (modalVideo) {
+                const source = modalVideo.querySelector("source");
+                if (source) {
+                    source.src = data.video;
+                    modalVideo.load();
+                    modalVideo.play().catch(function () {});
                 }
-            });
-        }, { threshold: 0.5 });
+            }
 
-        statNumbers.forEach(function (stat) {
-            observer.observe(stat);
-        });
+            // Show modal
+            projectModal.classList.add("active");
+        }
     }
 
     // ========================================== //
-    // LUXURY SERVICES — ARROW HOVER              //
+    // LOG CONSOLE — DEBUG                       //
     // ========================================== //
-    const serviceArrows = document.querySelectorAll(".service-arrow");
-
-    if (serviceArrows.length > 0) {
-        serviceArrows.forEach(function (arrow) {
-            arrow.addEventListener("mouseenter", function () {
-                const icon = this.querySelector("i");
-                if (icon) {
-                    icon.style.transform = "translateX(4px)";
-                    icon.style.transition = "transform 0.3s ease";
-                }
-            });
-
-            arrow.addEventListener("mouseleave", function () {
-                const icon = this.querySelector("i");
-                if (icon) {
-                    icon.style.transform = "translateX(0)";
-                }
-            });
-        });
-    }
-
-    // ========================================== //
-    // SCROLL PROGRESS INDICATOR                  //
-    // ========================================== //
-    const scrollLine = document.querySelector(".hero-scroll-progress");
-
-    if (scrollLine) {
-        window.addEventListener("scroll", function () {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollLine.style.height = scrollPercent + "%";
-        });
-    }
-
     console.log("Halden — Script loaded successfully (defensive mode)");
 });
