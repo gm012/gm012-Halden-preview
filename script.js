@@ -1,5 +1,5 @@
 // ============================================ //
-// HALDEN — SHARED JAVASCRIPT                   //
+// BuiltIntel  — SHARED JAVASCRIPT                   //
 // ============================================ //
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -569,5 +569,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    console.log("Halden — Script loaded successfully");
+    console.log("BuiltIntel  — Script loaded successfully");
 });
